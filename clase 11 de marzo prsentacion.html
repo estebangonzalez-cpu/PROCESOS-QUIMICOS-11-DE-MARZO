@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Química Verde - Presentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5f2a 0%, #0d3320 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            position: relative;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .slide:nth-child(even) {
+            background: linear-gradient(135deg, #0d3320 0%, #1a5f2a 100%);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #90ee90;
+            border-bottom: 3px solid #90ee90;
+            padding-bottom: 15px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #c8e6c9;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            font-size: 1.4em;
+            color: #a5d6a7;
+            margin: 20px 0 10px 0;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        ul {
+            max-width: 900px;
+            margin: 20px 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+            list-style: none;
+        }
+
+        li:before {
+            content: "🌿";
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: rgba(144, 238, 144, 0.15);
+            border-left: 5px solid #90ee90;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            max-width: 900px;
+        }
+
+        .process-box {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #90ee90;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            max-width: 1000px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .step-number {
+            background: #90ee90;
+            color: #0d3320;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            margin: 0 0 10px 0;
+            color: #90ee90;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        .number-badge {
+            display: inline-block;
+            background: #90ee90;
+            color: #0d3320;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 1.1em;
+        }
+
+        th {
+            background: #90ee90;
+            color: #0d3320;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .icon-large {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .chemical-formula {
+            background: rgba(144, 238, 144, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: 'Courier New', monospace;
+            color: #90ee90;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #90ee90;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 40px 20px; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            p, li { font-size: 1.1em; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .step { flex-direction: column; }
+            .step-number { margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide">
+        <div class="icon-large">🧪🌱</div>
+        <h1>QUÍMICA VERDE</h1>
+        <p style="text-align: center; font-size: 1.5em; font-style: italic;">
+            "El diseño de productos y procesos químicos que reducen o eliminan 
+            el uso de sustancias peligrosas"
+        </p>
+        <div style="margin-top: 50px; text-align: center;">
+            <p style="font-size: 1.1em; opacity: 0.8;">Análisis de Procesos: PLA y CO₂ Supercrítico</p>
+        </div>
+        <div class="footer">1 / 10</div>
+    </div>
+
+    <!-- SLIDE 2: CONTEXTO HISTÓRICO -->
+    <div class="slide">
+        <h2>📚 Contexto Histórico</h2>
+        <div class="highlight-box">
+            <p><strong>La química ha sido fundamental para el bienestar humano:</strong></p>
+            <ul>
+                <li>Aumento de eficiencia energética</li>
+                <li>Reducción de emisiones de gases de efecto invernadero</li>
+                <li>Reutilización de residuos</li>
+                <li>Desarrollo de materiales sostenibles</li>
+            </ul>
+        </div>
+        <h3>⚠️ El Punto de Inflexión (años 50-60)</h3>
+        <ul>
+            <li><strong>Contaminación ambiental</strong> y emisiones tóxicas</li>
+            <li><strong>Escándalo de la talidomida</strong> (efectos teratogénicos)</li>
+            <li><strong>Rachel Carson</strong> y su libro <em>"Primavera Silenciosa"</em> (1962) sobre pesticidas</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: #90ee90;">
+            "La sociedad comenzó a exigir una química más responsable"
+        </p>
+        <div class="footer">2 / 10</div>
+    </div>
+
+    <!-- SLIDE 3: DEFINICIÓN Y ORÍGENES -->
+    <div class="slide">
+        <h2>🎯 Definición y Orígenes</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>📖 1990: El Nacimiento</h3>
+                <p><strong>Paul Anastas</strong> y <strong>John Warner</strong> publican:</p>
+                <p style="font-style: italic; color: #c8e6c9;">"Green Chemistry: Theory and Practice"</p>
+                <p>Establecieron los <strong>12 Principios</strong> de la Química Verde</p>
+            </div>
+            <div class="card">
+                <h3>🌿 Definición Oficial</h3>
+                <p>Diseño de productos y procesos químicos que:</p>
+                <ul>
+                    <li>Reducen o eliminan sustancias peligrosas</li>
+                    <li>Eliminan contaminación en la fuente</li>
+                    <li>Mejoran eficiencia y ahorran recursos</li>
+                    <li>Logran desarrollo sostenible</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">3 / 10</div>
+    </div>
+
+    <!-- SLIDE 4: OBJETIVOS -->
+    <div class="slide">
+        <h2>🎯 Objetivos de la Química Verde</h2>
+        <div class="highlight-box">
+            <p style="text-align: center; font-size: 1.4em;">
+                <strong>Herramienta imprescindible para revertir el impacto negativo 
+                de los procesos químicos</strong>
+            </p>
+        </div>
+        <div class="grid-2">
+            <div>
+                <h3>🌍 Sobre el Medio Ambiente</h3>
+                <ul>
+                    <li>Nuevas formas de síntesis sin dañar el entorno</li>
+                    <li>Aplicación en todo el ciclo de vida del producto</li>
+                    <li>Minimizar o eliminar sustancias peligrosas</li>
+                </ul>
+            </div>
+            <div>
+                <h3>⚡ Eficiencia y Economía</h3>
+                <ul>
+                    <li>Reducir consumo energético</li>
+                    <li>Garantizar racionalidad económica</li>
+                    <li>Contribuir a los <strong>Objetivos de Desarrollo Sostenible (ODS)</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">4 / 10</div>
+    </div>
+
+    <!-- SLIDE 5: SÍNTESIS DE ÁCIDO POLILÁCTICO (PLA) - DETALLADO -->
+    <div class="slide">
+        <h2>🧬 Proceso: Síntesis de Ácido Poliláctico (PLA)</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Definición:</strong> Polímero biodegradable derivado del <span class="chemical-formula">ácido láctico (C₃H₆O₃)</span></p>
+            <p><strong>Fuentes:</strong> 100% renovables — maíz 🌽, remolacha, trigo y productos ricos en almidón</p>
+        </div>
+
+        <h3>🔬 Etapas del Proceso de Síntesis Verde:</h3>
+        
+        <div class="process-box">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Fermentación de Carbohidratos</h4>
+                    <p>Los azúcares de la biomasa (glucosa) se fermentan mediante <strong>bacterias lácticas</strong> (Lactobacillus) para producir ácido láctico. Temperatura controlada (40-50°C), pH neutro.</p>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Condensación Directa (método clásico)</h4>
+                    <p>El ácido láctico se condensa eliminando agua. <strong>Limitación:</strong> Produce polímeros de bajo peso molecular.</p>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Polimerización por Anillo Apertura (método verde mejorado)</h4>
+                    <p>El ácido láctico → lactida (dímero cíclico) mediante catalizadores de <strong>estaño no tóxicos</strong> (Sn(Oct)₂). La lactida se polimeriza con apertura del anillo obteniendo <strong>PLA de alto peso molecular</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>✅ Principios de Química Verde aplicados:</strong></p>
+            <ul>
+                <li><strong>#7 Uso de recursos renovables:</strong> Biomasa 100% renovable</li>
+                <li><strong>#3 Menos procesos peligrosos:</strong> Catalizadores no tóxicos, baja temperatura</li>
+                <li><strong>#10 Diseño para degradación:</strong> Biodegradable en compostaje industrial</li>
+                <li><strong>#12 Menor riesgo de accidentes:</strong> Proceso acuoso, no requiere solventes orgánicos peligrosos</li>
+            </ul>
+        </div>
+        
+        <div class="footer">5 / 10</div>
+    </div>
+
+    <!-- SLIDE 6: PROPIEDADES Y USOS DEL PLA -->
+    <div class="slide">
+        <h2>🖨️ Propiedades y Aplicaciones del PLA</h2>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌟 Propiedades Físicas</h3>
+                <ul>
+                    <li>Resistente a la <strong>humedad</strong> y <strong>grasa</strong></li>
+                    <li>Barrera del <strong>sabor y olor</strong> similar al PET</li>
+                    <li>Transparencia óptica</li>
+                    <li>Termoplástico procesable</li>
+                    <li>Biocompatible (aptos para implantes médicos)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🎯 Aplicaciones Principales</h3>
+                <ul>
+                    <li><strong>Impresión 3D:</strong> Material más usado (fácil de imprimir)</li>
+                    <li><strong>Envases alimentarios:</strong> Alternativa al PET</li>
+                    <li><strong>Embalajes:</strong> Bolsas, films, bandejas</li>
+                    <li><strong>Textil:</strong> Fibra para ropa sostenible</li>
+                    <li><strong>Médico:</strong> Suturas, implantes, liberación controlada de fármacos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px;">
+            <p style="text-align: center; font-size: 1.3em;">
+                <strong>El PLA representa la transición de la economía lineal (petróleo → residuo) 
+                a la economía circular (biomasa → compost → biomasa)</strong> 🔄
+            </p>
+        </div>
+        
+        <div class="footer">6 / 10</div>
+    </div>
+
+    <!-- SLIDE 7: CO2 SUPERCRÍTICO - FUNDAMENTOS -->
+    <div class="slide">
+        <h2>💨 CO₂ Supercrítico: Fundamentos</h2>
+        
+        <div class="highlight-box">
+            <p><strong>¿Qué es un fluido supercrítico?</strong></p>
+            <p>Sustancia por encima de su <strong>punto crítico</strong> (para CO₂: 31.1°C y 73.8 atm), 
+            donde no existe distinción entre fase líquida y gaseosa.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>🔬 Propiedades Híbridas</h3>
+                <ul>
+                    <li><strong>Densidad similar a líquido</strong> → alta capacidad de disolución</li>
+                    <li><strong>Viscosidad similar a gas</strong> → alta difusividad</li>
+                    <li><strong>Difusión superior</strong> → penetra matrices sólidas fácilmente</li>
+                    <li><strong>Tensión superficial cero</strong> → mojado perfecto de superficies</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>♻️ Ventajas Ambientales</h3>
+                <ul>
+                    <li>Gas <strong>inocuo</strong> y natural</li>
+                    <li><strong>No tóxico</strong>, <strong>no inflamable</strong></li>
+                    <li>Fácilmente <strong>reciclable</strong> (cambio de presión/temperatura)</li>
+                    <li>Puede obtenerse de <strong>fuentes recicladas</strong></li>
+                    <li><strong>No genera residuos</strong> orgánicos volátiles</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px; font-size: 1.2em; color: #90ee90;">
+            <strong>El CO₂ supercrítico combina lo mejor de dos mundos: 
+            poder de disolución + capacidad de penetración</strong>
+        </p>
+        
+        <div class="footer">7 / 10</div>
+    </div>
+
+    <!-- SLIDE 8: PROCESO DE DESCafeinado CON CO2 - DETALLADO -->
+    <div class="slide">
+        <h2>☕ Proceso: Descafeinado con CO₂ Supercrítico</h2>
+        
+        <div class="highlight-box">
+            <p><strong>Objetivo:</strong> Extraer selectivamente la <span class="chemical-formula">cafeína (C₈H₁₀N₄O₂)</span> 
+            de granos de café verde sin alterar otros compuestos del aroma y sabor</p>
+        </div>
+
+        <h3>⚙️ Etapas del Proceso:</h3>
+        
+        <div class="process-box">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Prettratamiento: Hidratación</h4>
+                    <p>Los granos de café verde se humedecen con agua (35-40% humedad). 
+                    Esto abre la estructura celular y facilita la extracción de cafeína.</p>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Extracción con CO₂ Supercrítico</h4>
+                    <p>El CO₂ a <strong>90-100°C y 200-300 bar</strong> circula a través de los granos. 
+                    La cafeína se disuelve en el CO₂ por <strong>interacciones dipolo-inducido</strong>. 
+                    Otros compuestos polares (ácidos clorogénicos, azúcares) NO se extraen por selectividad.</p>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Separación y Recuperación</h4>
+                    <p>El CO₂ cargado pasa a un separador donde se reduce presión. 
+                    La cafeína precipita (se recupera para uso farmacéutico/cosmético). 
+                    El CO₂ se <strong>recomprime y recicla al 100%</strong>.</p>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Secado y Tostado</h4>
+                    <p>Los granos descafeinados se secan y están listos para el tostado. 
+                    Conservan el <strong>100% de su perfil de sabor original</strong>.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">8 / 10</div>
+    </div>
+
+    <!-- SLIDE 9: COMPARATIVA Y PRINCIPIOS VERDES -->
+    <div class="slide">
+        <h2>⚖️ Comparativa: CO₂ vs. Métodos Tradicionales</h2>
+        
+        <table>
+            <tr>
+                <th>Característica</th>
+                <th>CO₂ Supercrítico</th>
+                <th>Diclorometano (CH₂Cl₂)</th>
+                <th>Agua sola</th>
+            </tr>
+            <tr>
+                <td><strong>Selectividad</strong></td>
+                <td>⭐⭐⭐ Alta (solo cafeína)</td>
+                <td>⭐⭐ Media (extrae otros compuestos)</td>
+                <td>⭐⭐⭐ Alta pero lenta</td>
+            </tr>
+            <tr>
+                <td><strong>Toxicidad</strong></td>
+                <td>✅ Inocuo</td>
+                <td>❌ Cancerígeno, hepatotóxico</td>
+                <td>✅ Seguro</td>
+            </tr>
+            <tr>
+                <td><strong>Reciclaje solvente</strong></td>
+                <td>✅ 100% reciclable</td>
+                <td>❌ Se pierde, contamina aguas</td>
+                <td>⚠️ Alto consumo energético</td>
+            </tr>
+            <tr>
+                <td><strong>Residuos en producto</strong></td>
+                <td>✅ Cero</td>
+                <td>❌ Riesgo de trazos</td>
+                <td>✅ Cero</td>
+            </tr>
+            <tr>
+                <td><strong>Rendimiento</strong></td>
+                <td>⭐⭐⭐ Alto (97-99%)</td>
+                <td>⭐⭐⭐ Alto</td>
+                <td>⭐ Bajo</td>
+            </tr>
+            <tr>
+                <td><strong>Seguridad laboral</strong></td>
+                <td>✅ Alta</td>
+                <td>❌ Requiere controles extremos</td>
+                <td>✅ Alta</td>
+            </tr>
+        </table>
+
+        <div class="highlight-box" style="margin-top: 30px;">
+            <p><strong>🌿 Principios de Química Verde aplicados al descafeinado:</strong></p>
+            <ul>
+                <li><strong>#1 Prevención:</strong> No genera residuos tóxicos en fuente</li>
+                <li><strong>#5 Solventes más seguros:</strong> CO₂ reemplaza disolventes orgánicos peligrosos</li>
+                <li><strong>#9 Catalisis/Economía circular:</strong> CO₂ se recicla completamente como "catalizador" del proceso</li>
+                <li><strong>#6 Eficiencia energética:</strong> Menor consumo que destilación de disolventes</li>
+            </ul>
+        </div>
+        
+        <div class="footer">9 / 10</div>
+    </div>
+
+    <!-- SLIDE 10: CONCLUSIONES -->
+    <div class="slide">
+        <h2>✅ Conclusiones</h2>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3>🧬 Síntesis de PLA</h3>
+                <p>Demuestra que los polímeros de alto rendimiento pueden provenir de <strong>recursos 100% renovables</strong>, 
+                usando catalizadores no tóxicos y diseñándose para biodegradación controlada, 
+                cerrando el ciclo biológico.</p>
+            </div>
+            <div class="card">
+                <h3>☕ CO₂ Supercrítico</h3>
+                <p>Ejemplifica la <strong>sustitución de procesos peligrosos</strong> por tecnologías que usan 
+                solventes inocuos, reciclables y selectivos, manteniendo calidad del producto 
+                sin comprometer seguridad humana ni ambiental.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px;">
+            <p style="text-align: center; font-size: 1.4em;">
+                <strong>Ambos procesos ilustran el corazón de la Química Verde:</strong><br>
+                <span style="color: #90ee90; font-size: 1.2em;">
+                    "Eliminar el peligro en la fuente, no al final de la tubería"
+                </span>
+            </p>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; font-size: 1.3em; font-style: italic;">
+            La Química Verde no es un costo adicional,<br>
+            es una <strong>inversión en sostenibilidad</strong> que genera valor económico, ambiental y social 🌍
+        </p>
+        
+        <div class="footer">10 / 10</div>
+    </div>
+
+</body>
+</html>
